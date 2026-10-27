@@ -1,0 +1,869 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Excel solutions, reports and Python automation by Flavian Digital Services.">
+  <title>Flavian Digital Services</title>
+
+  <style>
+    :root {
+      --navy: #061725;
+      --navy-light: #10283a;
+      --teal: #08d6ad;
+      --paper: #f3f8fc;
+      --ink: #092849;
+      --muted: #a9bed0;
+      --line: #294257;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.55;
+      color: var(--ink);
+    }
+
+    a { color: inherit; }
+
+    .wrap {
+      width: min(1200px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    .dark {
+      background: var(--navy);
+      color: white;
+    }
+
+    header .wrap {
+      min-height: 88px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .logo {
+      color: white;
+      text-decoration: none;
+      font-weight: 900;
+      letter-spacing: .08em;
+      white-space: nowrap;
+    }
+
+    .logo small {
+      display: block;
+      color: var(--muted);
+      font-size: 9px;
+      letter-spacing: .2em;
+    }
+
+    nav, .controls {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    nav a:hover { color: var(--teal); }
+
+    select, input, textarea {
+      font: inherit;
+    }
+
+    #language {
+      color: white;
+      background: var(--navy-light);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 10px;
+    }
+
+    .button {
+      display: inline-block;
+      border: 0;
+      border-radius: 9px;
+      padding: 13px 18px;
+      font-weight: bold;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .button-primary {
+      color: #002a2b;
+      background: var(--teal);
+    }
+
+    .button-outline {
+      color: white;
+      border: 1px solid #7890a3;
+      background: transparent;
+    }
+
+    .hero {
+      min-height: 520px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 46px;
+      padding: 45px 0;
+    }
+
+    .eyebrow {
+      color: #91b2cb;
+      font-size: 11px;
+      font-weight: bold;
+      letter-spacing: .2em;
+    }
+
+    h1 {
+      margin: 20px 0;
+      color: var(--teal);
+      font-size: clamp(42px, 5vw, 60px);
+      line-height: 1.02;
+      letter-spacing: -.05em;
+    }
+
+    .hero-copy {
+      max-width: 600px;
+      color: #e2edf5;
+      font-size: 16px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 24px 0;
+    }
+
+    .benefits {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      color: #c5d4e0;
+      font-size: 12px;
+    }
+
+    .benefits b {
+      display: block;
+      color: white;
+      font-size: 13px;
+    }
+
+    .dashboard {
+      min-height: 290px;
+      padding: 26px;
+      border: 1px solid #29485d;
+      border-radius: 20px;
+      background: radial-gradient(ellipse, #1e4051, #0a1928 72%);
+    }
+
+    .report {
+      min-height: 220px;
+      padding: 16px;
+      border: 5px solid #344c5c;
+      border-radius: 12px;
+      color: #092849;
+      background: #f5f9fc;
+      transform: rotate(3deg);
+    }
+
+    .report-top {
+      height: 14px;
+      margin-bottom: 12px;
+      border-radius: 3px;
+      background: #08785d;
+    }
+
+    .report-grid {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .report-box {
+      min-height: 76px;
+      padding: 8px;
+      border: 1px solid #d2deea;
+      border-radius: 6px;
+      font-size: 10px;
+      font-weight: bold;
+    }
+
+    .fake-line {
+      height: 7px;
+      margin-top: 8px;
+      border-radius: 5px;
+      background: #dce6ee;
+    }
+
+    .chart {
+      height: 46px;
+      display: flex;
+      align-items: end;
+      gap: 6px;
+      padding: 5px;
+    }
+
+    .chart i {
+      flex: 1;
+      border-radius: 2px 2px 0 0;
+      background: #09b999;
+    }
+
+    .dashboard-caption {
+      margin-top: 14px;
+      color: #d3e1ed;
+      font-size: 9px;
+      letter-spacing: .12em;
+    }
+
+    .services {
+      padding: 38px 0 46px;
+      background: var(--paper);
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 22px;
+    }
+
+    h2 {
+      margin: 6px 0 10px;
+      font-size: 29px;
+      letter-spacing: -.04em;
+    }
+
+    .section-heading p {
+      max-width: 440px;
+      margin: 0;
+      color: #385b7c;
+      font-size: 13px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .card {
+      min-height: 280px;
+      padding: 20px;
+      border: 1px solid white;
+      border-radius: 14px;
+    }
+
+    .card:nth-child(1) { background: #e7f7f0; }
+    .card:nth-child(2) { background: #e7f2ff; }
+    .card:nth-child(3) { background: #efedff; }
+    .card:nth-child(4) { background: #fff4e4; }
+
+    .card-icon { font-size: 25px; }
+
+    .card h3 {
+      margin: 8px 0;
+      font-size: 17px;
+    }
+
+    .card p, .card ul {
+      color: #385b7c;
+      font-size: 12px;
+    }
+
+    .card ul {
+      padding: 0;
+      list-style: none;
+    }
+
+    .card li { margin: 5px 0; }
+
+    .card li::before {
+      content: "✓";
+      margin-right: 8px;
+      color: #009a7c;
+      font-weight: bold;
+    }
+
+    .card a {
+      color: #008b70;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .lower {
+      padding: 38px 0 24px;
+    }
+
+    .lower-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.15fr 1.3fr;
+      gap: 30px;
+      align-items: start;
+    }
+
+    .lower h2 { font-size: 22px; }
+
+    .lower p {
+      color: #d2e0eb;
+      font-size: 13px;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin: 18px 0;
+      text-align: center;
+    }
+
+    .step-number {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      margin: 0 auto 8px;
+      border-radius: 50%;
+      background: #05b895;
+      font-weight: bold;
+    }
+
+    .steps > div:nth-child(2) .step-number { background: #087bd4; }
+    .steps > div:nth-child(3) .step-number { background: #8050e8; }
+    .steps > div:nth-child(4) .step-number { background: #f27b55; }
+
+    .steps b { font-size: 12px; }
+    .steps p { margin: 4px 0; font-size: 11px; }
+
+    .form-box {
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: #0b2030;
+    }
+
+    .form-box h2 { margin-top: 5px; }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .field { margin-bottom: 8px; }
+    .field.full { grid-column: 1 / -1; }
+
+    .field label {
+      display: block;
+      margin-bottom: 4px;
+      color: #e6eef6;
+      font-size: 11px;
+    }
+
+    .field input, .field select, .field textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #38556c;
+      border-radius: 7px;
+      color: white;
+      background: #1a3245;
+      font-size: 12px;
+    }
+
+    .field textarea {
+      min-height: 76px;
+      resize: vertical;
+    }
+
+    .form-grid button { width: 100%; }
+
+    .form-note {
+      color: #91abc0 !important;
+      font-size: 10px !important;
+    }
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 38px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; }
+      .dashboard { max-width: 560px; width: 100%; }
+      .cards { grid-template-columns: repeat(2, 1fr); }
+      .lower-grid { grid-template-columns: 1fr 1fr; }
+      .form-box { grid-column: 1 / -1; }
+    }
+
+    @media (max-width: 620px) {
+      .wrap { width: calc(100% - 32px); }
+      header .wrap { flex-wrap: wrap; padding: 14px 0; }
+      nav { order: 3; width: 100%; justify-content: space-between; gap: 8px; }
+      nav a { font-size: 12px; }
+      .controls { gap: 8px; }
+      .hero { padding: 34px 0; }
+      h1 { font-size: 43px; }
+      .dashboard { min-height: 250px; padding: 18px; }
+      .report { min-height: 195px; }
+      .section-heading { display: block; }
+      .section-heading p { margin-top: 10px; }
+      .cards, .lower-grid { grid-template-columns: 1fr; }
+      .form-box { grid-column: auto; }
+      .footer { flex-wrap: wrap; }
+      .steps { gap: 4px; }
+      .steps b, .steps p { font-size: 10px; }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="dark">
+    <div class="wrap">
+      <a class="logo" href="#home">FLAVIAN<small>DIGITAL SERVICES</small></a>
+
+      <nav aria-label="Main navigation">
+        <a href="#home" data-i="home">Home</a>
+        <a href="#services" data-i="services">Services</a>
+        <a href="https://github.com/Flavean" target="_blank" rel="noopener noreferrer" data-i="portfolio">Portfolio</a>
+        <a href="#about" data-i="about">About</a>
+        <a href="#contact" data-i="contact">Contact</a>
+      </nav>
+
+      <div class="controls">
+        <select id="language" aria-label="Choose language">
+          <option value="en">EN</option>
+          <option value="ro">RO</option>
+          <option value="de">DE</option>
+        </select>
+        <a class="button button-primary" href="#contact" data-i="quote">Get a Quote</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="dark" id="home">
+      <div class="wrap hero">
+        <div>
+          <div class="eyebrow" data-i="kicker">DATA · AUTOMATION · EFFICIENT WORKFLOWS</div>
+          <h1 data-i="headline">From messy data<br>to clear results.</h1>
+          <p class="hero-copy" data-i="intro">Practical Excel solutions, automated reports and custom Python tools to help businesses save time and work more efficiently.</p>
+
+          <div class="hero-actions">
+            <a class="button button-primary" href="#contact" data-i="request">Request a Quote →</a>
+            <a class="button button-outline" href="#services" data-i="view">View Services ↓</a>
+          </div>
+
+          <div class="benefits">
+            <div><b data-i="save">Save time</b><span data-i="saveSub">No more repetitive work</span></div>
+            <div><b data-i="insights">Better insights</b><span data-i="insightsSub">Clear and organized data</span></div>
+            <div><b data-i="custom">Custom solutions</b><span data-i="customSub">Tailored to your needs</span></div>
+          </div>
+        </div>
+
+        <div class="dashboard" aria-label="Sales report illustration">
+          <div class="report">
+            <div class="report-top"></div>
+            <strong data-i="sales">Sales Report</strong>
+            <div class="report-grid">
+              <div class="report-box">
+                <span data-i="monthly">Monthly performance</span>
+                <div class="fake-line"></div><div class="fake-line"></div><div class="fake-line"></div>
+              </div>
+              <div class="report-box">
+                <span data-i="performance">Performance</span>
+                <div class="chart"><i style="height:40%"></i><i style="height:65%"></i><i style="height:50%"></i><i style="height:90%"></i></div>
+              </div>
+              <div class="report-box" data-i="metrics">Key metrics</div>
+              <div class="report-box" data-i="overview">Data overview</div>
+            </div>
+          </div>
+          <div class="dashboard-caption">AUTOMATE · ORGANIZE · ANALYZE · IMPROVE</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="services" id="services">
+      <div class="wrap">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow" data-i="serviceLabel">SERVICES</div>
+            <h2 data-i="help">How can I help you?</h2>
+          </div>
+          <p data-i="serviceIntro">Practical solutions for data, spreadsheets and documents, tailored to your requirements.</p>
+        </div>
+
+        <div class="cards">
+          <article class="card">
+            <div class="card-icon">🟩</div>
+            <h3 data-i="excel">Excel & CSV</h3>
+            <p data-i="excelDesc">Clean, organize, merge and convert spreadsheet data.</p>
+            <ul>
+              <li data-i="clean">Data cleanup and formatting</li>
+              <li data-i="duplicates">Remove duplicates</li>
+              <li data-i="combine">Combine multiple files</li>
+              <li>CSV ↔ Excel conversion</li>
+            </ul>
+            <a href="#contact" data-i="ask">Request a Quote</a>
+          </article>
+
+          <article class="card">
+            <div class="card-icon">📊</div>
+            <h3 data-i="reports">Reports & Dashboards</h3>
+            <p data-i="reportsDesc">Turn your data into clear reports and visual dashboards.</p>
+            <ul>
+              <li data-i="autoReports">Automated reports</li>
+              <li data-i="charts">Charts and dashboards</li>
+              <li data-i="pivot">Pivot tables and formulas</li>
+              <li data-i="consolidate">Data consolidation</li>
+            </ul>
+            <a href="#contact" data-i="ask">Request a Quote</a>
+          </article>
+
+          <article class="card">
+            <div class="card-icon">🔄</div>
+            <h3 data-i="python">Python Automation</h3>
+            <p data-i="pythonDesc">Custom tools to automate repetitive tasks.</p>
+            <ul>
+              <li data-i="process">Process Excel/CSV files</li>
+              <li data-i="workflows">Automate data workflows</li>
+              <li data-i="recurring">Generate recurring reports</li>
+              <li data-i="tools">Custom business tools</li>
+            </ul>
+            <a href="#contact" data-i="ask">Request a Quote</a>
+          </article>
+
+          <article class="card">
+            <div class="card-icon">📄</div>
+            <h3 data-i="documents">Documents & Translation</h3>
+            <p data-i="documentsDesc">Process documents and translate tables between languages.</p>
+            <ul>
+              <li data-i="translate">Translate spreadsheets (EN/DE/RO)</li>
+              <li data-i="structure">Keep original structure</li>
+              <li data-i="format">Format documents</li>
+              <li data-i="verify">Verify translated data</li>
+            </ul>
+            <a href="#contact" data-i="ask">Request a Quote</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="dark lower">
+      <div class="wrap lower-grid">
+        <div id="about">
+          <div class="eyebrow" data-i="aboutLabel">ABOUT ME</div>
+          <h2 data-i="aboutTitle">Turning data into solutions.</h2>
+          <p data-i="aboutDesc">I'm Flavian, a Python developer focused on practical data processing, spreadsheet automation and custom software tools.</p>
+          <a class="button button-outline" href="https://github.com/Flavean" target="_blank" rel="noopener noreferrer" data-i="portfolioButton">View portfolio →</a>
+        </div>
+
+        <div id="portfolio">
+          <div class="eyebrow" data-i="how">HOW IT WORKS</div>
+          <div class="steps">
+            <div><div class="step-number">1</div><b data-i="step1">Send a request</b><p data-i="step1d">Tell me about your project.</p></div>
+            <div><div class="step-number">2</div><b data-i="step2">Get a quote</b><p data-i="step2d">I review your requirements.</p></div>
+            <div><div class="step-number">3</div><b data-i="step3">Project delivery</b><p data-i="step3d">I build and test the solution.</p></div>
+            <div><div class="step-number">4</div><b data-i="step4">Better results</b><p data-i="step4d">You save time and work efficiently.</p></div>
+          </div>
+          <p data-i="featured"><strong>Featured project: Excel Organizer</strong> — a Python tool for spreadsheet processing.</p>
+        </div>
+
+        <form class="form-box" id="contact" action="https://formspree.io/f/mgaakraz" method="POST">
+          <div class="eyebrow" data-i="formLabel">REQUEST A QUOTE</div>
+          <h2 data-i="formTitle">Let's work together.</h2>
+
+          <div class="form-grid">
+            <div class="field">
+              <label for="name" data-i="nameLabel">Your name *</label>
+              <input id="name" name="name" autocomplete="name" required>
+            </div>
+
+            <div class="field">
+              <label for="email" data-i="emailLabel">Email address *</label>
+              <input id="email" name="email" type="email" autocomplete="email" required>
+            </div>
+
+            <div class="field full">
+              <label for="service" data-i="serviceLabelForm">Service required *</label>
+              <select id="service" name="service" required>
+                <option value="" data-i="choose">Select a service</option>
+                <option value="excel" data-i="excel">Excel & CSV</option>
+                <option value="reports" data-i="reports">Reports & Dashboards</option>
+                <option value="python" data-i="python">Python Automation</option>
+                <option value="documents" data-i="documents">Documents & Translation</option>
+                <option value="other" data-i="other">Other</option>
+              </select>
+            </div>
+
+            <div class="field full">
+              <label for="budget" data-i="budgetLabel">Estimated budget</label>
+              <select id="budget" name="budget">
+                <option value="" data-i="unsure">Not sure yet</option>
+                <option value="under250">Under €250</option>
+                <option value="250-500">€250–€500</option>
+                <option value="500-1000">€500–€1,000</option>
+                <option value="over1000">€1,000+</option>
+              </select>
+            </div>
+
+            <div class="field full">
+              <label for="details" data-i="detailsLabel">Project details *</label>
+              <textarea id="details" name="details" required></textarea>
+            </div>
+
+            <div class="field full">
+              <button class="button button-primary" type="submit" data-i="send">Prepare email request →</button>
+            </div>
+          </div>
+
+          <p class="form-note" data-i="formNote">Your request is sent directly. You will see a confirmation message.</p>
+        </form>
+      </div>
+
+      <div class="wrap footer">
+        <span>© <span id="year"></span> Flavian Digital Services</span>
+        <span data-i="tagline">Digital services for better workflows.</span>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const text = {
+      en: {
+        home:"Home", services:"Services", portfolio:"Portfolio", about:"About", contact:"Contact",
+        quote:"Get a Quote", kicker:"DATA · AUTOMATION · EFFICIENT WORKFLOWS",
+        headline:"From messy data<br>to clear results.",
+        intro:"Practical Excel solutions, automated reports and custom Python tools to help businesses save time and work more efficiently.",
+        request:"Request a Quote →", view:"View Services ↓", save:"Save time",
+        saveSub:"No more repetitive work", insights:"Better insights",
+        insightsSub:"Clear and organized data", custom:"Custom solutions",
+        customSub:"Tailored to your needs", sales:"Sales Report",
+        monthly:"Monthly performance", performance:"Performance",
+        metrics:"Key metrics", overview:"Data overview", serviceLabel:"SERVICES",
+        help:"How can I help you?",
+        serviceIntro:"Practical solutions for data, spreadsheets and documents, tailored to your requirements.",
+        excel:"Excel & CSV", excelDesc:"Clean, organize, merge and convert spreadsheet data.",
+        clean:"Data cleanup and formatting", duplicates:"Remove duplicates",
+        combine:"Combine multiple files", ask:"Request a Quote",
+        reports:"Reports & Dashboards", reportsDesc:"Turn data into clear reports and dashboards.",
+        autoReports:"Automated reports", charts:"Charts and dashboards",
+        pivot:"Pivot tables and formulas", consolidate:"Data consolidation",
+        python:"Python Automation", pythonDesc:"Custom tools to automate repetitive tasks.",
+        process:"Process Excel/CSV files", workflows:"Automate data workflows",
+        recurring:"Generate recurring reports", tools:"Custom business tools",
+        documents:"Documents & Translation",
+        documentsDesc:"Process documents and translate tables between languages.",
+        translate:"Translate spreadsheets (EN/DE/RO)", structure:"Keep original structure",
+        format:"Format documents", verify:"Verify translated data",
+        aboutLabel:"ABOUT ME", aboutTitle:"Turning data into solutions.",
+        aboutDesc:"I'm Flavian, a Python developer focused on practical data processing, spreadsheet automation and custom software tools.",
+        portfolioButton:"View portfolio →", how:"HOW IT WORKS",
+        step1:"Send a request", step1d:"Tell me about your project.",
+        step2:"Get a quote", step2d:"I review your requirements.",
+        step3:"Project delivery", step3d:"I build and test the solution.",
+        step4:"Better results", step4d:"You save time and work efficiently.",
+        featured:"<strong>Featured project: Excel Organizer</strong> — a Python tool for spreadsheet processing.",
+        formLabel:"REQUEST A QUOTE", formTitle:"Let's work together.",
+        nameLabel:"Your name *", emailLabel:"Email address *",
+        serviceLabelForm:"Service required *", choose:"Select a service",
+        other:"Other", budgetLabel:"Estimated budget", unsure:"Not sure yet",
+        detailsLabel:"Project details *", send:"Prepare email request →",
+        formNote:"Your request is sent directly. You will see a confirmation message.",
+        tagline:"Digital services for better workflows.",
+        detailsPlaceholder:"What would you like to automate?",
+        mailSubject:"Website quote request", mailName:"Name", mailEmail:"Email",
+        mailService:"Service", mailBudget:"Estimated budget", mailDetails:"Project details"
+      },
+      ro: {
+        home:"Acasă", services:"Servicii", portfolio:"Portofoliu", about:"Despre", contact:"Contact",
+        quote:"Cere o ofertă", kicker:"DATE · AUTOMATIZARE · FLUXURI EFICIENTE",
+        headline:"De la date dezordonate<br>la rezultate clare.",
+        intro:"Soluții practice în Excel, rapoarte automatizate și instrumente Python personalizate, pentru ca afacerea ta să economisească timp și să lucreze mai eficient.",
+        request:"Cere o ofertă →", view:"Vezi serviciile ↓", save:"Economisești timp",
+        saveSub:"Fără muncă repetitivă", insights:"Informații mai clare",
+        insightsSub:"Date ordonate și clare", custom:"Soluții personalizate",
+        customSub:"Adaptate nevoilor tale", sales:"Raport de vânzări",
+        monthly:"Performanță lunară", performance:"Performanță",
+        metrics:"Indicatori cheie", overview:"Prezentare date", serviceLabel:"SERVICII",
+        help:"Cum te pot ajuta?",
+        serviceIntro:"Soluții practice pentru date, foi de calcul și documente, adaptate cerințelor tale.",
+        excel:"Excel și CSV", excelDesc:"Curățarea, organizarea, combinarea și conversia datelor.",
+        clean:"Curățare și formatare date", duplicates:"Eliminare duplicate",
+        combine:"Combinare fișiere", ask:"Cere o ofertă",
+        reports:"Rapoarte și tablouri de bord", reportsDesc:"Transformarea datelor în rapoarte și tablouri de bord clare.",
+        autoReports:"Rapoarte automatizate", charts:"Grafice și tablouri de bord",
+        pivot:"Tabele pivot și formule", consolidate:"Consolidarea datelor",
+        python:"Automatizare Python", pythonDesc:"Instrumente personalizate pentru sarcini repetitive.",
+        process:"Procesare fișiere Excel/CSV", workflows:"Automatizare fluxuri de date",
+        recurring:"Generare rapoarte periodice", tools:"Instrumente personalizate",
+        documents:"Documente și traduceri",
+        documentsDesc:"Procesarea documentelor și traducerea tabelelor între limbi.",
+        translate:"Traducere foi de calcul (EN/DE/RO)", structure:"Păstrarea structurii originale",
+        format:"Formatare documente", verify:"Verificarea datelor traduse",
+        aboutLabel:"DESPRE MINE", aboutTitle:"Transform datele în soluții.",
+        aboutDesc:"Sunt Flavian, dezvoltator Python, concentrat pe procesarea datelor, automatizarea foilor de calcul și instrumente software personalizate.",
+        portfolioButton:"Vezi portofoliul →", how:"CUM FUNCȚIONEAZĂ",
+        step1:"Trimite o cerere", step1d:"Povestește-mi despre proiect.",
+        step2:"Primești o ofertă", step2d:"Analizez cerințele tale.",
+        step3:"Livrarea proiectului", step3d:"Construiesc și testez soluția.",
+        step4:"Rezultate mai bune", step4d:"Economisești timp și lucrezi eficient.",
+        featured:"<strong>Proiect prezentat: Excel Organizer</strong> — instrument Python pentru foi de calcul.",
+        formLabel:"CERE O OFERTĂ", formTitle:"Hai să lucrăm împreună.",
+        nameLabel:"Numele tău *", emailLabel:"Adresa de e-mail *",
+        serviceLabelForm:"Serviciul dorit *", choose:"Alege un serviciu",
+        other:"Altceva", budgetLabel:"Buget estimativ", unsure:"Nu știu încă",
+        detailsLabel:"Detalii despre proiect *", send:"Pregătește cererea →",
+        formNote:"Cererea este trimisă direct prin formular. Vei primi un mesaj de confirmare.",
+        tagline:"Servicii digitale pentru fluxuri de lucru mai bune.",
+        detailsPlaceholder:"Ce ai vrea să automatizezi?",
+        mailSubject:"Cerere de ofertă de pe site", mailName:"Nume", mailEmail:"E-mail",
+        mailService:"Serviciu", mailBudget:"Buget estimativ", mailDetails:"Detalii proiect"
+      },
+      de: {
+        home:"Start", services:"Leistungen", portfolio:"Portfolio", about:"Über mich", contact:"Kontakt",
+        quote:"Angebot anfragen", kicker:"DATEN · AUTOMATISIERUNG · EFFIZIENTE ABLÄUFE",
+        headline:"Von unübersichtlichen Daten<br>zu klaren Ergebnissen.",
+        intro:"Praktische Excel-Lösungen, automatisierte Berichte und individuelle Python-Tools helfen Unternehmen, Zeit zu sparen und effizienter zu arbeiten.",
+        request:"Angebot anfragen →", view:"Leistungen ansehen ↓", save:"Zeit sparen",
+        saveSub:"Keine wiederkehrende Arbeit", insights:"Bessere Einblicke",
+        insightsSub:"Klare, geordnete Daten", custom:"Individuelle Lösungen",
+        customSub:"Auf Ihre Bedürfnisse zugeschnitten", sales:"Umsatzbericht",
+        monthly:"Monatliche Leistung", performance:"Leistung",
+        metrics:"Wichtige Kennzahlen", overview:"Datenübersicht", serviceLabel:"LEISTUNGEN",
+        help:"Wie kann ich helfen?",
+        serviceIntro:"Praktische Lösungen für Daten, Tabellen und Dokumente, passend zu Ihren Anforderungen.",
+        excel:"Excel & CSV", excelDesc:"Tabellendaten bereinigen, organisieren und konvertieren.",
+        clean:"Daten bereinigen und formatieren", duplicates:"Duplikate entfernen",
+        combine:"Dateien zusammenführen", ask:"Angebot anfragen",
+        reports:"Berichte & Dashboards", reportsDesc:"Daten in klare Berichte und Dashboards verwandeln.",
+        autoReports:"Automatisierte Berichte", charts:"Diagramme und Dashboards",
+        pivot:"Pivot-Tabellen und Formeln", consolidate:"Datenkonsolidierung",
+        python:"Python-Automatisierung", pythonDesc:"Individuelle Tools für wiederkehrende Aufgaben.",
+        process:"Excel-/CSV-Dateien verarbeiten", workflows:"Datenabläufe automatisieren",
+        recurring:"Regelmäßige Berichte erstellen", tools:"Individuelle Geschäftstools",
+        documents:"Dokumente & Übersetzung",
+        documentsDesc:"Dokumente bearbeiten und Tabellen zwischen Sprachen übersetzen.",
+        translate:"Tabellen übersetzen (EN/DE/RO)", structure:"Originalstruktur beibehalten",
+        format:"Dokumente formatieren", verify:"Übersetzte Daten prüfen",
+        aboutLabel:"ÜBER MICH", aboutTitle:"Daten in Lösungen verwandeln.",
+        aboutDesc:"Ich bin Flavian, Python-Entwickler mit Schwerpunkt auf Datenverarbeitung, Tabellenautomatisierung und individuellen Softwaretools.",
+        portfolioButton:"Portfolio ansehen →", how:"SO FUNKTIONIERT ES",
+        step1:"Anfrage senden", step1d:"Erzählen Sie mir vom Projekt.",
+        step2:"Angebot erhalten", step2d:"Ich prüfe Ihre Anforderungen.",
+        step3:"Projektumsetzung", step3d:"Ich entwickle und teste die Lösung.",
+        step4:"Bessere Ergebnisse", step4d:"Sie sparen Zeit und arbeiten effizient.",
+        featured:"<strong>Projekt im Fokus: Excel Organizer</strong> — ein Python-Tool zur Tabellenverarbeitung.",
+        formLabel:"ANGEBOT ANFRAGEN", formTitle:"Lassen Sie uns zusammenarbeiten.",
+        nameLabel:"Ihr Name *", emailLabel:"E-Mail-Adresse *",
+        serviceLabelForm:"Gewünschte Leistung *", choose:"Leistung auswählen",
+        other:"Sonstiges", budgetLabel:"Geschätztes Budget", unsure:"Noch nicht sicher",
+        detailsLabel:"Projektdetails *", send:"E-Mail-Anfrage vorbereiten →",
+        formNote:"Ihre Anfrage wird direkt über das Formular gesendet. Sie erhalten eine Bestätigung.",
+        tagline:"Digitale Services für bessere Arbeitsabläufe.",
+        detailsPlaceholder:"Was möchten Sie automatisieren?",
+        mailSubject:"Angebotsanfrage von der Website", mailName:"Name", mailEmail:"E-Mail",
+        mailService:"Leistung", mailBudget:"Geschätztes Budget", mailDetails:"Projektdetails"
+      }
+    };
+
+    const languageSelect = document.querySelector("#language");
+    let currentLanguage = "en";
+
+    function setLanguage(language) {
+      currentLanguage = language;
+      const words = text[language];
+
+      document.documentElement.lang = language;
+
+      document.querySelectorAll("[data-i]").forEach((element) => {
+        const key = element.dataset.i;
+        if (words[key]) element.innerHTML = words[key];
+      });
+
+      document.querySelector("#details").placeholder = words.detailsPlaceholder;
+      localStorage.setItem("flavian-language", language);
+    }
+
+    languageSelect.value = localStorage.getItem("flavian-language") || "en";
+    setLanguage(languageSelect.value);
+    languageSelect.addEventListener("change", () => {
+      setLanguage(languageSelect.value);
+    });
+
+    document.querySelector("#year").textContent = new Date().getFullYear();
+
+    document.querySelector("#contact").addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      const formElement = event.currentTarget, form = new FormData(event.currentTarget);
+      const words = text[currentLanguage];
+
+      const serviceNames = {
+        excel: text[currentLanguage].excel,
+        reports: text[currentLanguage].reports,
+        python: text[currentLanguage].python,
+        documents: text[currentLanguage].documents,
+        other: text[currentLanguage].other
+      };
+
+      const budgetNames = {
+        "": words.unsure,
+        under250: "Under €250",
+        "250-500": "€250–€500",
+        "500-1000": "€500–€1,000",
+        over1000: "€1,000+"
+      };
+
+      form.set("service", serviceNames[form.get("service")]);
+      form.set("budget", budgetNames[form.get("budget")]);
+      form.set("_subject", words.mailSubject);
+      const subject = encodeURIComponent(words.mailSubject);
+      const body = encodeURIComponent(
+        `${words.mailName}: ${form.get("name")}\n` +
+        `${words.mailEmail}: ${form.get("email")}\n` +
+        `${words.mailService}: ${serviceNames[form.get("service")]}\n` +
+        `${words.mailBudget}: ${budgetNames[form.get("budget")]}\n\n` +
+        `${words.mailDetails}:\n${form.get("details")}`
+      );
+
+      const status = {
+          en: { ok: "Your request was sent successfully.", error: "Could not send the request. Please try again." },
+          ro: { ok: "Cererea ta a fost trimisă cu succes.", error: "Cererea nu a putut fi trimisă. Încearcă din nou." },
+          de: { ok: "Ihre Anfrage wurde erfolgreich gesendet.", error: "Die Anfrage konnte nicht gesendet werden. Bitte versuchen Sie es erneut." }
+        };
+
+        fetch("https://formspree.io/f/mgaakraz", {
+          method: "POST",
+          body: form,
+          headers: { Accept: "application/json" }
+        })
+          .then((response) => {
+            if (!response.ok) throw new Error("Send failed");
+            alert(status[currentLanguage].ok);
+            formElement.reset();
+          })
+          .catch(() => alert(status[currentLanguage].error));
+        
+    });
+  </script>
+</body>
+</html>
